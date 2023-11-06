@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 数组的解构
+        let arr = [1, 2, 3];
+        let a1 = arr[0];
+        let a2 = arr[1];
+        let a3 = arr[2];
+        console.log("a1 = " + a1 + " a2 = " + a2 + " a3 = " + a3);
+
+        // es6 数组的解构表达式
+        let[b1, b2, b3] = arr;
+        console.log("b1 = " + b1 + " b2 = " + b2 + " b3 = " + b3);
+
+        // 对象解构
+        let person = {
+            name: 'dendy',
+            age: 11,
+            hobbies: ['sing', 'dance']
+        }
+        // let name = person.name;
+        // console.log("name = " + name);
+
+        // es6对象解构
+        let{name, age, hobbies} = person;
+        console.log("name = " + name + " age = " + age + " hobbies = " + hobbies);
+    </script>
+</body>
+</html>

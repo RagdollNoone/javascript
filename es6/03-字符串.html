@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 字符串模板
+        let html = "<div>" + 
+                    "<a>hello html</a>" + 
+                    "</div>";
+        console.log(html);
+
+        // 优势在于可以直接从其它地方copy过来 不用手写拼接了            
+        let es_html = `<div>
+                       <a>hello es_html</a>
+                       </div>`;
+        console.log(es_html);
+
+        // 字符串扩展
+        let str = "hello.vue";
+        console.log(str.startsWith("hello"));
+        console.log(str.endsWith(".vue"));
+        console.log(str.includes("e"));
+        console.log(str.includes("hello"));
+
+        // 字符串当中引用变量
+        let person = {
+            name: 'dendy',
+            age: 11,
+            hobbies: ['sing', 'dance']
+        }
+
+        function func() {
+            return "this is a function";
+        }
+
+        let{name, age, hobbies} = person;
+        console.log(`name: ${name} age: ${age} hobbies: ${hobbies} function return: ${func()}`);
+    </script>
+</body>
+</html>

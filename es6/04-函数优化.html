@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 函数参数默认值
+        function print(a) {
+            if (!a) {
+                a = "empty string";
+            }
+            console.log(a);
+        }
+        print();
+
+        // es6 函数参数默认值
+        function es6Print(a="empty string") {
+            console.log(a);
+        }
+        es6Print();
+        es6Print("hello world");
+
+        // 可变长度参数
+        function travel(a) {
+            console.log(a);
+        }
+        travel([1,2,3])
+
+        // es6 可变长度参数
+        function esTravel(...a) {
+            console.log(a);
+        }
+        esTravel(4,5,6);
+
+        // es6 参数可以声明解构表达式
+        let nums = {
+            a: 1,
+            b: 2
+        };
+    
+        function add({a, b}) {
+            console.log(a + b);
+        }
+    
+        add(nums);
+
+        // es6 lambda表达式
+        let div = (a, b) => { 
+            let c = a / b; 
+            return c;
+        };
+        console.log(div(2,1));
+    </script>
+</body>
+</html>
