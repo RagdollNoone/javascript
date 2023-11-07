@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js">
+        // 要导入的script
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 所有代码单线程执行
+        // 用户登录 并展示该用户各科成绩 发送三次请求
+        // 1. 查询用户 查询成功说明用户存在
+        // 2. 查询科目
+        // 3. 根据科目的返回结果 查询成绩
+        // promise --> 封装异步操作
+        // resolve --> 操作成功后解析数据
+        // reject --> 操作失败 出发拒绝
+
+        let p = new Promise((resolve, reject) => {
+            $.ajax({
+                url: "/mock/user.json",
+                success: function(data) {
+                    console.log("查询用户成功: " + data);
+                    resolve(data);
+                },
+                failure: function(err) {
+                    console.log("查询用户失败: " + err);
+                    reject(err);
+                }
+            });
+        });
+
+        p.then((obj) => {
+            return new Promise((resolve, reject) => {
+                console.log("接收到上一步的信息: " + obj);
+                $.ajax({
+                    url: "/mock/user_corse_${obj.id}.json",
+                    success: function(data) {
+                        console.log("查询用户课程成功: " + data);
+                        resolve(data);
+                    },
+                    failure: function(err) {
+                        console.log("查询用户课程失败: " + data);
+                        reject(err);
+                    }
+                })
+            })
+        }).then((data) => {
+            console.log("上一步的结果: " + data);
+            $.ajax({
+                url: "/mock/user_score_${data.id}.json",
+                success: function(data) {
+                    console.log("查询用户课程分数成功: " + data);
+                    resolve(data);
+                },
+                failure: function(err) {
+                    console.log("查询用户课程分数失败: " + data);
+                    reject(err);
+                }
+            })
+        })
+
+        // 对方法进行封装 TODO: resolve reject执行逻辑是内嵌的吗 似乎没有读到具体的逻辑
+        function get(url, data) {
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        console.log("请求 " + url + " 成功: " + data);
+                        resolve(data);
+                    },
+                    failure: function(err) {
+                        console.log("请求 " + url + " 失败: " + err);
+                        reject(err);
+                    }
+                })
+            })
+        }
+
+        get("/mock/user.json")
+        .then((data) => {
+            console.log("用户查询成功");
+            return get("/mock/user_corse_${data.id}", data);    
+        })
+        .then((data) => {
+            console.log("用户课程查询成功");
+            return get("/mock/user_score_${data.id}", data);
+        })
+        .then((data) => {
+            console.log("用户课程成绩查询成功");
+        })
+    </script>
+</body>
+</html>

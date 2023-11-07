@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // map 作为一个接收函数 将原数组中的元素处理后返回
+        let arr = [1, 20, -5, 3];
+        arr = arr.map((item) => {
+            return item * 2;
+        })
+        console.log(arr);
+
+        // reduce TODO: 啥意思?
+        arr = arr.reduce((a,b) => {
+            console.log("上一次处理后: " + a);
+            console.log("当前正在处理: " + b);
+            return a + b;
+        }, 1)
+        console.log(arr);
+    </script>
+</body>
+</html>

@@ -7,7 +7,63 @@
 </head>
 <body>
     <script>
-        
+        const person = {
+            name: "jack",
+            age: 21,
+            language: ['java', 'js', 'css']
+        }
+
+        // 对象内置函数
+        console.log(Object.keys(person));
+        console.log(Object.values(person));
+        console.log(Object.entries(person));
+
+        // 对象合并
+        const target = {a: 1};
+        const source1 = {b: 2};
+        const source2 = {c: 3};
+
+        // Object.assign(target, source1, source2);
+        Object.assign(target, source1);
+        console.log(target);
+
+        // 声明对象简写 TODO: 啥意思?
+        const age = 23;
+        const name = "michael";
+        const person1 = {age: age, name: name};
+        const person2 = {age, name};
+        console.log(person2);
+
+        // 声明对象书写方式 TODO: 啥意思?
+        let person3 = {
+            name: "abc",
+            eat: function(food) {
+                console.log("eat1: 我吃了" + food);
+            },
+            eat2: food => console.log("eat2: 我吃了" + food),
+            eat3(food) {
+                console.log("eat3: 我吃了" + food);
+            }
+        }
+
+        person3.eat("香蕉");
+        person3.eat2("苹果");
+        person3.eat3("生梨");
+
+        // 拷贝对象
+        let p1 = {
+            name: "zxc",
+            age: 19
+        }
+
+        let someone = {...p1};
+        console.log(someone);
+
+        // 对象合并
+        let someone_name = {name: "zxc"};
+        let someone_age = {age: 19};
+        let another_someone = {...someone_name, ...someone_age}
+        console.log(another_someone);
     </script>
 </body>
 </html>
